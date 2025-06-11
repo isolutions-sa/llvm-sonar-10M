@@ -1,0 +1,26 @@
+# Top‐level timeout set to 14400 seconds (4 hours)
+timeout: "28800s"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+  # Pick a larger machine type than the default.
+  # Available built‐in options: E2_SMALL, E2_MEDIUM (default), E2_HIGHCPU_8, E2_HIGHCPU_32
+  machineType: "E2_HIGHCPU_32"
+
+steps:
+  - name: 'sonarsource/sonar-scanner-cli'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        mkdir -p /tmp/.sonar
+        mkdir -p /tmp/.scannerwork
+        export SONAR_USER_HOME=/tmp/.sonar
+        sonar-scanner \
+          -Dsonar.projectKey=llvm-sonar-10m-cloudbuild \
+          -Dsonar.projectName=llvm-sonar-10m-cloudbuild \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=https://sonar-demo-pt.iexperts.cloud \
+          -Dsonar.login=sqp_82a770ca7272633f17311e63cb0b32caeafbe334 \
+          -Dsonar.working.directory=/tmp/.scannerwork
