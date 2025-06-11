@@ -24,5 +24,5 @@ steps:
           -Dsonar.host.url=https://sonar-demo-pt.iexperts.cloud \
           -Dsonar.login=sqp_82a770ca7272633f17311e63cb0b32caeafbe334 \
           -Dsonar.log.level=DEBUG \
-          -Dsonar.scanner.app.jvm.opts=-Xmx8g -Xms512m
+          -Dsonar.scanner.app.jvm.opts="-Xmx8g -Xms512m"
           -Dsonar.working.directory=/tmp/.scannerwork
